@@ -1,10 +1,10 @@
 /* ===== Typing Animation ===== */
 const phrases = [
-    "reliable cloud platforms.",
-    "automated test frameworks.",
-    "CI/CD quality gates.",
-    "scalable data pipelines.",
-    "REST API validation suites."
+    "ML pipelines & models.",
+    "A/B testing infrastructure.",
+    "anomaly detection systems.",
+    "telemetry & metric frameworks.",
+    "production data pipelines."
 ];
 
 let phraseIndex = 0;
