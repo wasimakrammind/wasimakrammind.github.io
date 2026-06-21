@@ -47,10 +47,10 @@ function createRain() {
     rainContainer.appendChild(drop);
     setTimeout(() => drop.remove(), 4000);
 }
-for (let i = 0; i < 60; i++) {
-    setTimeout(() => createRain(), i * 50);
+for (let i = 0; i < 30; i++) {
+    setTimeout(() => createRain(), i * 100);
 }
-setInterval(createRain, 60);
+setInterval(createRain, 300);
 
 /* ===== Scroll Reveal ===== */
 const revealObserver = new IntersectionObserver(
@@ -84,9 +84,13 @@ mobileNav.querySelectorAll('a').forEach((a) => {
 /* ===== Smooth Scroll ===== */
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     });
 });
 
