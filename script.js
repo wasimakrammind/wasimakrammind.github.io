@@ -1,135 +1,119 @@
-/* ===== Typing Animation ===== */
-const phrases = [
-    "ML pipelines & models.",
-    "A/B testing infrastructure.",
-    "anomaly detection systems.",
-    "telemetry & metric frameworks.",
-    "production data pipelines."
+/* ===== Role Typing ===== */
+const roles = [
+    "Data Scientist",
+    "ML Engineer",
+    "Analytics Engineer",
+    "Deep Learning Researcher",
+    "Experimentation Engineer"
 ];
+let rIdx = 0, cIdx = 0, deleting = false;
+const roleEl = document.getElementById('roleText');
 
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-const typingEl = document.getElementById('typingText');
-
-function typeLoop() {
-    const current = phrases[phraseIndex];
-    if (!isDeleting) {
-        typingEl.textContent = current.slice(0, charIndex + 1);
-        charIndex++;
-        if (charIndex === current.length) {
-            isDeleting = true;
-            setTimeout(typeLoop, 2000);
+function typeRole() {
+    const cur = roles[rIdx];
+    if (!deleting) {
+        roleEl.textContent = cur.slice(0, cIdx + 1);
+        cIdx++;
+        if (cIdx === cur.length) {
+            deleting = true;
+            setTimeout(typeRole, 2200);
             return;
         }
-        setTimeout(typeLoop, 60);
+        setTimeout(typeRole, 70);
     } else {
-        typingEl.textContent = current.slice(0, charIndex - 1);
-        charIndex--;
-        if (charIndex === 0) {
-            isDeleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            setTimeout(typeLoop, 400);
+        roleEl.textContent = cur.slice(0, cIdx - 1);
+        cIdx--;
+        if (cIdx === 0) {
+            deleting = false;
+            rIdx = (rIdx + 1) % roles.length;
+            setTimeout(typeRole, 400);
             return;
         }
-        setTimeout(typeLoop, 30);
+        setTimeout(typeRole, 35);
     }
 }
-typeLoop();
+typeRole();
+
+/* ===== Rain ===== */
+const rainContainer = document.getElementById('rain');
+function createRain() {
+    const drop = document.createElement('div');
+    drop.className = 'raindrop';
+    drop.style.left = Math.random() * 100 + '%';
+    drop.style.height = 15 + Math.random() * 25 + 'px';
+    drop.style.animationDuration = 0.6 + Math.random() * 0.8 + 's';
+    drop.style.animationDelay = Math.random() * 2 + 's';
+    drop.style.opacity = 0.2 + Math.random() * 0.4;
+    rainContainer.appendChild(drop);
+    setTimeout(() => drop.remove(), 4000);
+}
+for (let i = 0; i < 60; i++) {
+    setTimeout(() => createRain(), i * 50);
+}
+setInterval(createRain, 60);
 
 /* ===== Scroll Reveal ===== */
-const observer = new IntersectionObserver(
+const revealObserver = new IntersectionObserver(
     (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+        entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add('visible');
         });
     },
-    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
 );
-document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+document.querySelectorAll('.reveal-cyber').forEach((el) => revealObserver.observe(el));
 
-/* ===== Nav Scroll ===== */
+/* ===== Nav ===== */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 50);
+    nav.style.borderBottomColor = window.scrollY > 50
+        ? 'rgba(0,240,255,0.15)'
+        : 'rgba(0,240,255,0.1)';
 });
 
 /* ===== Mobile Menu ===== */
-const toggle = document.getElementById('navToggle');
-const mobileMenu = document.getElementById('mobileMenu');
-toggle.addEventListener('click', () => {
-    toggle.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
+const hudToggle = document.getElementById('hudToggle');
+const mobileNav = document.getElementById('mobileNav');
+hudToggle.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
 });
-mobileMenu.querySelectorAll('a').forEach((a) => {
-    a.addEventListener('click', () => {
-        toggle.classList.remove('active');
-        mobileMenu.classList.remove('open');
-    });
+mobileNav.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => mobileNav.classList.remove('open'));
 });
 
-/* ===== Cursor Glow ===== */
-const glow = document.getElementById('cursorGlow');
-if (window.matchMedia('(pointer: fine)').matches) {
-    glow.style.opacity = '1';
-    document.addEventListener('mousemove', (e) => {
-        glow.style.left = e.clientX + 'px';
-        glow.style.top = e.clientY + 'px';
-    });
-}
-
-/* ===== Counter Animation ===== */
-const counters = document.querySelectorAll('.stat-num');
-const counterObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                const target = parseInt(el.dataset.count);
-                let current = 0;
-                const step = Math.max(1, Math.floor(target / 40));
-                const timer = setInterval(() => {
-                    current += step;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    el.textContent = current;
-                }, 30);
-                counterObserver.unobserve(el);
-            }
-        });
-    },
-    { threshold: 0.5 }
-);
-counters.forEach((c) => counterObserver.observe(c));
-
-/* ===== Particles ===== */
-const particlesContainer = document.getElementById('particles');
-function createParticle() {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.animationDuration = 8 + Math.random() * 12 + 's';
-    p.style.animationDelay = Math.random() * 5 + 's';
-    p.style.width = p.style.height = 1 + Math.random() * 2 + 'px';
-    particlesContainer.appendChild(p);
-    setTimeout(() => p.remove(), 20000);
-}
-for (let i = 0; i < 30; i++) {
-    setTimeout(() => createParticle(), i * 300);
-}
-setInterval(createParticle, 800);
-
-/* ===== Smooth Scroll for anchor links ===== */
+/* ===== Smooth Scroll ===== */
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
+
+/* ===== Character Parallax ===== */
+const character = document.getElementById('character');
+if (character) {
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const moveX = Math.min(scrollY * 0.15, 200);
+        character.style.transform = `translateX(${moveX}px)`;
+    });
+}
+
+/* ===== Skill Bars Animation ===== */
+const barObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((e) => {
+            if (e.isIntersecting) {
+                const fill = e.target.querySelector('.bar-fill');
+                if (fill) {
+                    const w = fill.style.width;
+                    fill.style.width = '0';
+                    setTimeout(() => { fill.style.width = w; }, 100);
+                }
+            }
+        });
+    },
+    { threshold: 0.3 }
+);
+document.querySelectorAll('.skill-node').forEach((n) => barObserver.observe(n));
