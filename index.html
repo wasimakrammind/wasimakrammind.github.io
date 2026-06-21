@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasim Akram Shaik | Software Engineer</title>
+    <meta name="description" content="Software Engineer with 4+ years of experience in cloud platforms, API validation, CI/CD, and test automation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Cursor glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">W<span class="accent">.</span></a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="https://github.com/wasimakrammind" target="_blank" class="nav-github">
+                <i class="fab fa-github"></i>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge animate-in">
+                <span class="status-dot"></span> Open to opportunities
+            </div>
+            <h1 class="hero-name animate-in delay-1">
+                Wasim Akram<br><span class="accent">Shaik</span>
+            </h1>
+            <div class="hero-typing animate-in delay-2">
+                <span class="typing-prefix">I build </span>
+                <span class="typing-text" id="typingText"></span>
+                <span class="typing-cursor">|</span>
+            </div>
+            <p class="hero-desc animate-in delay-3">
+                Software Engineer with 4+ years validating cloud services, REST APIs,
+                database workflows, and CI/CD pipelines. Currently pursuing M.S. in
+                Data Science at the University of Houston.
+            </p>
+            <div class="hero-cta animate-in delay-4">
+                <a href="#projects" class="btn btn-primary">
+                    View My Work <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    Get in Touch
+                </a>
+            </div>
+            <div class="hero-stats animate-in delay-5">
+                <div class="stat">
+                    <span class="stat-num" data-count="4">0</span><span class="accent">+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num" data-count="10">0</span><span class="accent">+</span>
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num" data-count="15">0</span><span class="accent">+</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual animate-in delay-3">
+            <div class="code-window">
+                <div class="code-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="code-title">wasim.py</span>
+                </div>
+                <pre class="code-body"><code><span class="kw">class</span> <span class="cls">SoftwareEngineer</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self):
+        self.name = <span class="str">"Wasim Akram Shaik"</span>
+        self.role = <span class="str">"SWE / Platform Reliability"</span>
+        self.languages = [<span class="str">"Java"</span>, <span class="str">"Python"</span>,
+                          <span class="str">"JavaScript"</span>, <span class="str">"SQL"</span>]
+        self.location = <span class="str">"Houston, TX"</span>
+
+    <span class="kw">def</span> <span class="fn">current_focus</span>(self):
+        <span class="kw">return</span> [
+            <span class="str">"Cloud Platform Validation"</span>,
+            <span class="str">"API & Service Reliability"</span>,
+            <span class="str">"CI/CD Quality Gates"</span>,
+            <span class="str">"Data Engineering"</span>
+        ]</code></pre>
+            </div>
+        </div>
+        <a href="#about" class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-arrow"><i class="fas fa-chevron-down"></i></div>
+        </a>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="section-num">01.</span> About Me
+            </h2>
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>
+                        I'm a software engineer who thrives at the intersection of development and quality.
+                        With over 4 years of hands-on experience, I've built and maintained automation frameworks,
+                        validated cloud-connected enterprise services, and set up CI/CD quality gates that catch
+                        issues before they reach production.
+                    </p>
+                    <p>
+                        My day-to-day involves working with Java, Python, SQL, and tools like Selenium, Cypress,
+                        and Postman to ensure that APIs, database workflows, and platform services run reliably.
+                        I've debugged production incidents by correlating logs, payloads, and SQL records, and
+                        I've mentored junior engineers along the way.
+                    </p>
+                    <p>
+                        I'm currently pursuing my Master's in Data Science at the University of Houston,
+                        where I'm deepening my understanding of distributed systems, algorithms, and
+                        data-intensive computing. I'm looking for full-time SWE roles where I can
+                        contribute to building reliable, scalable systems.
+                    </p>
+                </div>
+                <div class="about-details reveal delay-1">
+                    <div class="detail-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Houston, TX (Open to Relocate)</p>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <h4>Education</h4>
+                            <p>M.S. Data Science, University of Houston</p>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <h4>Current Role</h4>
+                            <p>Test Analyst / QA Automation Engineer</p>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-code"></i>
+                        <div>
+                            <h4>Focus</h4>
+                            <p>Platform Reliability & API Validation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section section-alt" id="skills">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="section-num">02.</span> Technical Skills
+            </h2>
+            <div class="skills-grid">
+                <div class="skill-category reveal">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Bash</span>
+                        <span class="tag">REST/JSON</span>
+                        <span class="tag">XML</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal delay-1">
+                    <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>Cloud / Platform</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Azure</span>
+                        <span class="tag">Azure DevOps</span>
+                        <span class="tag">SQL Server</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">AWS</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Kubernetes</span>
+                        <span class="tag">Linux</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal delay-2">
+                    <div class="skill-icon"><i class="fas fa-vial"></i></div>
+                    <h3>Automation / Testing</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Selenium</span>
+                        <span class="tag">TestNG</span>
+                        <span class="tag">Cypress</span>
+                        <span class="tag">Postman/Newman</span>
+                        <span class="tag">Tricentis Tosca</span>
+                        <span class="tag">Burp Suite</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal delay-3">
+                    <div class="skill-icon"><i class="fas fa-server"></i></div>
+                    <h3>Reliability / Ops</h3>
+                    <div class="skill-tags">
+                        <span class="tag">CI/CD</span>
+                        <span class="tag">Jenkins</span>
+                        <span class="tag">Monitoring</span>
+                        <span class="tag">Root-Cause Analysis</span>
+                        <span class="tag">Defect Triage</span>
+                        <span class="tag">On-call Support</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal delay-4">
+                    <div class="skill-icon"><i class="fas fa-users"></i></div>
+                    <h3>Delivery</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Jira</span>
+                        <span class="tag">Agile/Scrum</span>
+                        <span class="tag">Code Review</span>
+                        <span class="tag">Documentation</span>
+                        <span class="tag">Stakeholder Comms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="section-num">03.</span> Experience
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Test Analyst / QA Automation Engineer</h3>
+                                <h4><i class="fas fa-building"></i> Advanced Energy</h4>
+                            </div>
+                            <div class="timeline-meta">
+                                <span><i class="fas fa-calendar"></i> 2025 - Present</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Houston, TX</span>
+                            </div>
+                        </div>
+                        <ul class="timeline-points">
+                            <li>Partner with developers and stakeholders to clarify feature requirements, dependencies, acceptance criteria, and release risks for enterprise data and service workflows.</li>
+                            <li>Build and maintain automated UI, API, and database validation suites using Java/TestNG, Selenium, Cypress, Postman/Newman, SQL, and Tricentis Tosca.</li>
+                            <li>Operate CI quality gates in Azure DevOps and Jenkins; monitor automation health, failure trends, and service regressions before release candidates move forward.</li>
+                            <li>Debug production-like issues by correlating application logs, REST payloads, SQL records, and CI artifacts; document root cause and restoration steps.</li>
+                            <li>Validate secure API and authentication behavior using Burp Suite and Postman; support data-integrity checks across SQL Server/PostgreSQL workflows.</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span>Java</span><span>TestNG</span><span>Selenium</span><span>Cypress</span><span>Postman</span><span>Azure DevOps</span><span>Jenkins</span><span>Burp Suite</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Test Engineer & Technical Lead</h3>
+                                <h4><i class="fas fa-building"></i> HCLTech</h4>
+                            </div>
+                            <div class="timeline-meta">
+                                <span><i class="fas fa-calendar"></i> Jul 2022 - Dec 2024</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Chennai, India</span>
+                            </div>
+                        </div>
+                        <ul class="timeline-points">
+                            <li>Led QA/SDET delivery for service-oriented enterprise applications, converting ambiguous requirements into test strategy, design-review feedback, and release validation plans.</li>
+                            <li>Designed low-maintenance Java TestNG/Selenium automation with reusable utilities, page objects, parameterized data, and reporting patterns.</li>
+                            <li>Built API and database validation workflows for distributed services, covering REST contracts, error handling, auth flows, and SQL/NoSQL-backed state changes.</li>
+                            <li>Supported on-call-style incident triage and release readiness by diagnosing failures from logs, dashboards, SQL queries, and Jenkins runs.</li>
+                            <li>Mentored junior testers, reviewed automation code, standardized defect reporting, and communicated technical tradeoffs to stakeholders.</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span>Java</span><span>Selenium</span><span>TestNG</span><span>REST APIs</span><span>SQL</span><span>NoSQL</span><span>Jenkins</span><span>Jira</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Software Testing Intern</h3>
+                                <h4><i class="fas fa-building"></i> BitWise Academy</h4>
+                            </div>
+                            <div class="timeline-meta">
+                                <span><i class="fas fa-calendar"></i> May 2021 - Sep 2021</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Chennai, India</span>
+                            </div>
+                        </div>
+                        <ul class="timeline-points">
+                            <li>Created Selenium/TestNG, Postman, and SQL validation coverage for web/API workflows.</li>
+                            <li>Documented defects, supported smoke/regression testing, and helped stabilize release candidates.</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span>Selenium</span><span>TestNG</span><span>Postman</span><span>SQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section section-alt" id="education">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="section-num">04.</span> Education
+            </h2>
+            <div class="edu-grid">
+                <div class="edu-card reveal">
+                    <div class="edu-icon"><i class="fas fa-university"></i></div>
+                    <h3>University of Houston</h3>
+                    <h4>M.S. Engineering Data Science</h4>
+                    <p class="edu-date">Jan 2025 - Dec 2026</p>
+                    <p class="edu-coursework">Distributed Systems, Algorithms, Database Systems, Data-Intensive Computing</p>
+                </div>
+                <div class="edu-card reveal delay-1">
+                    <div class="edu-icon"><i class="fas fa-university"></i></div>
+                    <h3>IIT Madras</h3>
+                    <h4>B.Tech, Engineering</h4>
+                    <p class="edu-date">Aug 2018 - May 2022</p>
+                    <p class="edu-coursework">Data Structures, Algorithms, Mathematics, Signal Processing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="section-num">05.</span> Projects
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <i class="fas fa-folder-open project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/wasimakrammind/datapulse-ai" target="_blank" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <h3>DataPulse AI</h3>
+                    <p>Big Data Quality, Observability & GenAI Root-Cause Platform. 3-layer ETL pipeline, 15+ DQ checks, FastAPI REST API, Streamlit dashboard, and automated root-cause analysis.</p>
+                    <div class="project-tags">
+                        <span>Python</span><span>FastAPI</span><span>SQLite</span><span>Streamlit</span><span>GenAI</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-1">
+                    <div class="project-header">
+                        <i class="fas fa-folder-open project-icon"></i>
+                        <div class="project-links">
+                            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3>Cloud Platform Validation Suite</h3>
+                    <p>Reusable automation covering API contracts, data correctness, service health checks, retry/error scenarios, and CI reporting for database-backed platform workflows.</p>
+                    <div class="project-tags">
+                        <span>Java</span><span>TestNG</span><span>Cypress</span><span>Postman</span><span>Azure DevOps</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-2">
+                    <div class="project-header">
+                        <i class="fas fa-folder-open project-icon"></i>
+                        <div class="project-links">
+                            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3>Secure API Regression Suite</h3>
+                    <p>End-to-end regression coverage for authentication, authorization, negative cases, 4xx/5xx behavior, database side effects, and production-style defect reproduction.</p>
+                    <div class="project-tags">
+                        <span>Postman</span><span>Burp Suite</span><span>Selenium</span><span>Java</span><span>SQL</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-3">
+                    <div class="project-header">
+                        <i class="fas fa-folder-open project-icon"></i>
+                        <div class="project-links">
+                            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3>Clinical Trial Recruitment Agent</h3>
+                    <p>Real-time ingestion pipeline using Scrapy and ClinicalTrials.gov API to index 450K+ studies. Multi-agent RAG system with GPT-4o for patient eligibility validation.</p>
+                    <div class="project-tags">
+                        <span>Python</span><span>Scrapy</span><span>OpenAI</span><span>Streamlit</span><span>SQLite</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section-alt" id="contact">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="section-num">06.</span> Get In Touch
+            </h2>
+            <div class="contact-content reveal">
+                <p class="contact-text">
+                    I'm currently looking for full-time Software Engineer opportunities.
+                    Whether you have a role in mind, a question, or just want to connect,
+                    my inbox is always open.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:shaikwasimakram2000@gmail.com" class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <span>shaikwasimakram2000@gmail.com</span>
+                    </a>
+                    <a href="tel:+13463837704" class="contact-card">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (346) 383-7704</span>
+                    </a>
+                    <a href="https://linkedin.com/in/wasimakramshaik" target="_blank" class="contact-card">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/wasimakrammind" target="_blank" class="contact-card">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+                <a href="mailto:shaikwasimakram2000@gmail.com" class="btn btn-primary btn-lg">
+                    Say Hello <i class="fas fa-paper-plane"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Built by Wasim Akram Shaik</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
