@@ -4,447 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wasim Akram Shaik | Data Scientist & ML Engineer</title>
-    <meta name="description" content="Data Scientist with 4+ years building production analytics, experimentation, anomaly detection, and ML/data pipelines.">
+    <meta name="description" content="Interactive cyberpunk portfolio — walk around and explore!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Rain -->
-    <div class="rain" id="rain"></div>
-
-    <!-- Scanlines -->
-    <div class="scanlines"></div>
-
-    <!-- Nav HUD -->
-    <nav class="hud-nav" id="nav">
-        <div class="hud-logo">WASIM<span class="neon-pink">.</span>EXE</div>
-        <div class="hud-links">
-            <a href="#about" class="hud-btn" data-section="about">ABOUT</a>
-            <a href="#skills" class="hud-btn" data-section="skills">SKILLS</a>
-            <a href="#experience" class="hud-btn" data-section="xp">EXPERIENCE</a>
-            <a href="#projects" class="hud-btn" data-section="proj">PROJECTS</a>
-            <a href="#contact" class="hud-btn" data-section="contact">CONTACT</a>
+    <div id="game-wrapper">
+        <!-- Loading screen -->
+        <div id="loading-screen">
+            <div class="load-char"></div>
+            <div class="load-bar-wrap">
+                <div class="load-bar" id="loadBar"></div>
+            </div>
+            <div class="load-pct" id="loadPct">0%</div>
+            <p class="load-tip">Initializing cyberpunk city...</p>
         </div>
-        <button class="hud-toggle" id="hudToggle" aria-label="Menu">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
 
-    <!-- Mobile menu -->
-    <div class="mobile-nav" id="mobileNav">
-        <a href="#about">ABOUT</a>
-        <a href="#skills">SKILLS</a>
-        <a href="#experience">EXPERIENCE</a>
-        <a href="#projects">PROJECTS</a>
-        <a href="#contact">CONTACT</a>
+        <!-- Game canvas -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- HUD overlay -->
+        <div id="hud" class="hidden">
+            <div class="hud-name">WASIM<span class="pink">.</span>EXE</div>
+            <div class="hud-hint" id="hudHint"></div>
+            <div class="hud-controls">
+                <span>← → MOVE</span>
+                <span>↑ ENTER BUILDING</span>
+            </div>
+        </div>
+
+        <!-- Modal for content -->
+        <div id="modal" class="modal hidden">
+            <div class="modal-inner">
+                <button class="modal-close" id="modalClose">✕</button>
+                <div class="modal-header">
+                    <span class="modal-tag" id="modalTag"></span>
+                    <h2 id="modalTitle"></h2>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+            </div>
+        </div>
+
+        <!-- Intro overlay -->
+        <div id="intro" class="intro">
+            <div class="intro-box">
+                <h1>WASIM AKRAM SHAIK</h1>
+                <p class="intro-sub">[ Data Scientist & ML Engineer ]</p>
+                <p class="intro-desc">Walk around my cyberpunk city to explore my portfolio.<br>Use <strong>← →</strong> arrow keys to move, <strong>↑</strong> or <strong>Enter</strong> near a building to interact.</p>
+                <button id="startBtn" class="cyber-btn">START_EXPLORING</button>
+            </div>
+        </div>
     </div>
-
-    <!-- ===== HERO: Cyberpunk Skyline ===== -->
-    <section class="scene hero-scene" id="hero">
-        <!-- City layers -->
-        <div class="city-bg"></div>
-        <div class="city-mid"></div>
-        <div class="city-front"></div>
-        <div class="neon-grid"></div>
-
-        <!-- Character -->
-        <div class="character" id="character">
-            <div class="char-body">
-                <div class="char-head"></div>
-                <div class="char-torso"></div>
-                <div class="char-legs">
-                    <div class="leg left"></div>
-                    <div class="leg right"></div>
-                </div>
-            </div>
-            <div class="char-glow"></div>
-        </div>
-
-        <!-- Hero content -->
-        <div class="hero-hud">
-            <div class="hud-frame animate-glitch">
-                <div class="hud-status">
-                    <span class="blink-dot"></span> SYSTEM ONLINE
-                </div>
-                <h1 class="glitch-text" data-text="WASIM AKRAM SHAIK">WASIM AKRAM SHAIK</h1>
-                <div class="hero-role">
-                    <span class="typing-bracket">[</span>
-                    <span class="role-text" id="roleText"></span>
-                    <span class="cursor-blink">_</span>
-                    <span class="typing-bracket">]</span>
-                </div>
-                <p class="hero-bio">
-                    Data Scientist with 4+ years building production analytics,
-                    telemetry, experimentation, anomaly detection, and ML/data
-                    pipelines for engineering and product teams.
-                </p>
-                <div class="hero-actions">
-                    <a href="#projects" class="cyber-btn primary">
-                        <span>VIEW_PROJECTS</span>
-                        <i class="fas fa-terminal"></i>
-                    </a>
-                    <a href="#contact" class="cyber-btn secondary">
-                        <span>INIT_CONTACT</span>
-                    </a>
-                </div>
-                <div class="hero-stats-bar">
-                    <div class="stat-chip">
-                        <span class="stat-val">4+</span>
-                        <span class="stat-key">YRS_EXP</span>
-                    </div>
-                    <div class="stat-chip">
-                        <span class="stat-val">10+</span>
-                        <span class="stat-key">PROJECTS</span>
-                    </div>
-                    <div class="stat-chip">
-                        <span class="stat-val">20+</span>
-                        <span class="stat-key">TECH_STACK</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="scroll-prompt">
-            <span>SCROLL_DOWN</span>
-            <div class="scroll-arrows">
-                <i class="fas fa-chevron-down"></i>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== ABOUT ===== -->
-    <section class="scene content-scene" id="about">
-        <div class="scene-container">
-            <div class="section-header reveal-cyber">
-                <span class="section-tag">01</span>
-                <h2 class="neon-title">ABOUT<span class="neon-pink">_</span>ME</h2>
-                <div class="header-line"></div>
-            </div>
-            <div class="about-layout">
-                <div class="terminal-window reveal-cyber">
-                    <div class="terminal-bar">
-                        <span class="term-dot r"></span>
-                        <span class="term-dot y"></span>
-                        <span class="term-dot g"></span>
-                        <span class="term-title">wasim@portfolio:~$</span>
-                    </div>
-                    <div class="terminal-body">
-                        <p class="term-line"><span class="term-prompt">&gt;</span> I work at the intersection of analytics, experimentation, and ML engineering. Over 4+ years, I've built production telemetry pipelines, designed A/B testing infrastructure, developed anomaly detection systems, and trained deep learning models that inform real product decisions.</p>
-                        <p class="term-line"><span class="term-prompt">&gt;</span> My toolkit: Python, SQL, PySpark, PyTorch. I've defined metric frameworks and event schemas, built feedback-loop pipelines surfacing usage patterns and regressions, and architected Azure data systems processing millions of records.</p>
-                        <p class="term-line"><span class="term-prompt">&gt;</span> Currently pursuing M.S. Data Science at the University of Houston, focusing on statistics, ML, deep learning, and distributed systems. Looking for Data Scientist and ML Engineer roles.</p>
-                    </div>
-                </div>
-                <div class="info-cards reveal-cyber delay-1">
-                    <div class="info-chip">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div><strong>LOCATION</strong><br>Houston, TX</div>
-                    </div>
-                    <div class="info-chip">
-                        <i class="fas fa-graduation-cap"></i>
-                        <div><strong>EDUCATION</strong><br>M.S. Data Science, UH</div>
-                    </div>
-                    <div class="info-chip">
-                        <i class="fas fa-briefcase"></i>
-                        <div><strong>CURRENT</strong><br>Data Scientist & ML Research</div>
-                    </div>
-                    <div class="info-chip">
-                        <i class="fas fa-chart-line"></i>
-                        <div><strong>FOCUS</strong><br>Analytics, Experimentation, ML</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SKILLS ===== -->
-    <section class="scene content-scene alt-scene" id="skills">
-        <div class="scene-container">
-            <div class="section-header reveal-cyber">
-                <span class="section-tag">02</span>
-                <h2 class="neon-title">TECH<span class="neon-pink">_</span>STACK</h2>
-                <div class="header-line"></div>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-node reveal-cyber">
-                    <div class="node-icon"><i class="fas fa-chart-bar"></i></div>
-                    <h3>STATISTICS / DS</h3>
-                    <div class="node-tags">
-                        <span>A/B Testing</span><span>Hypothesis Testing</span>
-                        <span>Experimental Design</span><span>Anomaly Detection</span>
-                        <span>Regression</span><span>Metric Design</span>
-                        <span>Model Evaluation</span>
-                    </div>
-                    <div class="node-bar"><div class="bar-fill" style="width:95%"></div></div>
-                </div>
-                <div class="skill-node reveal-cyber delay-1">
-                    <div class="node-icon"><i class="fas fa-code"></i></div>
-                    <h3>LANGUAGES</h3>
-                    <div class="node-tags">
-                        <span>Python</span><span>Pandas</span><span>NumPy</span>
-                        <span>scikit-learn</span><span>SQL</span><span>PySpark</span>
-                        <span>PyTorch</span><span>Bash</span>
-                    </div>
-                    <div class="node-bar"><div class="bar-fill" style="width:92%"></div></div>
-                </div>
-                <div class="skill-node reveal-cyber delay-2">
-                    <div class="node-icon"><i class="fas fa-database"></i></div>
-                    <h3>DATA SYSTEMS</h3>
-                    <div class="node-tags">
-                        <span>Azure ADLS</span><span>Synapse</span><span>Databricks</span>
-                        <span>Fabric</span><span>Data Factory</span><span>Kafka</span>
-                        <span>Docker</span><span>Kubernetes</span>
-                    </div>
-                    <div class="node-bar"><div class="bar-fill" style="width:88%"></div></div>
-                </div>
-                <div class="skill-node reveal-cyber delay-3">
-                    <div class="node-icon"><i class="fas fa-brain"></i></div>
-                    <h3>ML / DEEP LEARNING</h3>
-                    <div class="node-tags">
-                        <span>PyTorch</span><span>TensorFlow</span>
-                        <span>Feature Engineering</span><span>Model Training</span>
-                        <span>Experiment Logging</span><span>GPU Profiling</span>
-                    </div>
-                    <div class="node-bar"><div class="bar-fill" style="width:85%"></div></div>
-                </div>
-                <div class="skill-node reveal-cyber delay-4">
-                    <div class="node-icon"><i class="fas fa-users"></i></div>
-                    <h3>DOMAIN</h3>
-                    <div class="node-tags">
-                        <span>Performance Eval</span><span>Sensor Validation</span>
-                        <span>Failure-Mode Analysis</span><span>Stakeholder Storytelling</span>
-                        <span>Mentoring</span>
-                    </div>
-                    <div class="node-bar"><div class="bar-fill" style="width:90%"></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== EXPERIENCE ===== -->
-    <section class="scene content-scene" id="experience">
-        <div class="scene-container">
-            <div class="section-header reveal-cyber">
-                <span class="section-tag">03</span>
-                <h2 class="neon-title">EXP<span class="neon-pink">_</span>LOG</h2>
-                <div class="header-line"></div>
-            </div>
-            <div class="xp-timeline">
-                <div class="xp-node reveal-cyber">
-                    <div class="xp-marker">
-                        <div class="marker-dot"></div>
-                        <div class="marker-line"></div>
-                    </div>
-                    <div class="xp-card">
-                        <div class="xp-header">
-                            <div>
-                                <h3>Data Scientist Intern / Analytics Engineer</h3>
-                                <span class="xp-company"><i class="fas fa-building"></i> Advanced Energy</span>
-                            </div>
-                            <div class="xp-meta">
-                                <span class="xp-date">2025 - NOW</span>
-                                <span class="xp-loc">Houston, TX</span>
-                            </div>
-                        </div>
-                        <ul class="xp-list">
-                            <li>Define telemetry and event-tracking schemas; build Python/SQL data pipelines that clean, validate, and transform SAP enterprise data into analysis-ready datasets.</li>
-                            <li>Build feature-engineering and feature-selection workflows using Python, PySpark, and SQL; apply statistical and model-based selection to identify high-signal predictors.</li>
-                            <li>Investigate trends, anomalies, and data-quality issues; translate ambiguous business questions into measurable metrics and stakeholder findings.</li>
-                        </ul>
-                        <div class="xp-tags">
-                            <span>Python</span><span>PySpark</span><span>SQL</span><span>SAP</span><span>Feature Engineering</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="xp-node reveal-cyber">
-                    <div class="xp-marker">
-                        <div class="marker-dot"></div>
-                        <div class="marker-line"></div>
-                    </div>
-                    <div class="xp-card">
-                        <div class="xp-header">
-                            <div>
-                                <h3>Machine Learning Research Engineer</h3>
-                                <span class="xp-company"><i class="fas fa-university"></i> University of Houston</span>
-                            </div>
-                            <div class="xp-meta">
-                                <span class="xp-date">MAR 2025 - NOW</span>
-                                <span class="xp-loc">Houston, TX</span>
-                            </div>
-                        </div>
-                        <ul class="xp-list">
-                            <li>Design and train PyTorch deep learning models for large-scale spatial transcriptomics analysis with reproducible preprocessing, training, validation, and visualization stages.</li>
-                            <li>Profile model-training bottlenecks with torch.profiler and nvidia-smi; improve data loading and experiment iteration speed.</li>
-                            <li>Convert statistical and model outputs into interpretable visualizations for research stakeholders and publication review.</li>
-                        </ul>
-                        <div class="xp-tags">
-                            <span>PyTorch</span><span>Deep Learning</span><span>GPU Profiling</span><span>Spatial Transcriptomics</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="xp-node reveal-cyber">
-                    <div class="xp-marker">
-                        <div class="marker-dot"></div>
-                        <div class="marker-line"></div>
-                    </div>
-                    <div class="xp-card">
-                        <div class="xp-header">
-                            <div>
-                                <h3>Senior Data Engineer / Technical Lead</h3>
-                                <span class="xp-company"><i class="fas fa-building"></i> HCLTech</span>
-                            </div>
-                            <div class="xp-meta">
-                                <span class="xp-date">JUL 2022 - DEC 2024</span>
-                                <span class="xp-loc">Chennai, India</span>
-                            </div>
-                        </div>
-                        <ul class="xp-list">
-                            <li>Owned product telemetry and instrumentation contracts for a medical application: co-designed event schemas, logging pipelines, data contracts, and quality checks.</li>
-                            <li>Designed A/B testing infrastructure including metric definitions, treatment/control assignment, statistical-significance tooling, and rollout reporting.</li>
-                            <li>Built feedback-loop pipelines surfacing usage patterns, metric regressions, and anomalies; developed semantic-layer views and dashboards.</li>
-                            <li>Architected Azure data systems with ADLS, Synapse, Databricks, PySpark processing millions of records, reducing manual QA by 2,500+ hrs/quarter.</li>
-                        </ul>
-                        <div class="xp-tags">
-                            <span>Azure</span><span>PySpark</span><span>Synapse</span><span>Databricks</span><span>A/B Testing</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="xp-node reveal-cyber">
-                    <div class="xp-marker">
-                        <div class="marker-dot"></div>
-                    </div>
-                    <div class="xp-card">
-                        <div class="xp-header">
-                            <div>
-                                <h3>Data Engineering Intern</h3>
-                                <span class="xp-company"><i class="fas fa-building"></i> BitWise Academy</span>
-                            </div>
-                            <div class="xp-meta">
-                                <span class="xp-date">MAY 2021 - SEP 2021</span>
-                                <span class="xp-loc">Chennai, India</span>
-                            </div>
-                        </div>
-                        <ul class="xp-list">
-                            <li>Built Python ETL pipelines with REST API integrations and SQL validation; added event logging and data-quality checks for downstream analytics.</li>
-                        </ul>
-                        <div class="xp-tags">
-                            <span>Python</span><span>ETL</span><span>SQL</span><span>REST APIs</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== PROJECTS ===== -->
-    <section class="scene content-scene alt-scene" id="projects">
-        <div class="scene-container">
-            <div class="section-header reveal-cyber">
-                <span class="section-tag">04</span>
-                <h2 class="neon-title">PROJ<span class="neon-pink">_</span>FILES</h2>
-                <div class="header-line"></div>
-            </div>
-            <div class="project-grid">
-                <div class="project-holo reveal-cyber">
-                    <div class="holo-header">
-                        <i class="fas fa-flask holo-icon"></i>
-                        <a href="https://github.com/wasimakrammind/datapulse-ai" target="_blank"><i class="fab fa-github"></i></a>
-                    </div>
-                    <h3>Performance Metrics & Experimentation Framework</h3>
-                    <p>Event-schema contracts, metric definitions, treatment/control datasets, and significance-testing outputs for feature-rollout decisions at scale.</p>
-                    <div class="holo-tags">
-                        <span>PySpark</span><span>SQL</span><span>Azure Synapse</span><span>ADLS</span>
-                    </div>
-                </div>
-
-                <div class="project-holo reveal-cyber delay-1">
-                    <div class="holo-header">
-                        <i class="fas fa-wave-square holo-icon"></i>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
-                    <h3>Real-Time Anomaly Detection Feedback Loop</h3>
-                    <p>Telemetry aggregation and anomaly checks to detect metric regressions and alert engineering teams before issues reach downstream consumers.</p>
-                    <div class="holo-tags">
-                        <span>PySpark</span><span>SQL</span><span>Kafka</span><span>Power BI</span>
-                    </div>
-                </div>
-
-                <div class="project-holo reveal-cyber delay-2">
-                    <div class="holo-header">
-                        <i class="fas fa-robot holo-icon"></i>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
-                    <h3>Deep Learning Evaluation Pipeline</h3>
-                    <p>Reproducible large-data ML workflow: modular ingestion, feature engineering, model training, validation metrics, checkpointing, and experiment logging.</p>
-                    <div class="holo-tags">
-                        <span>PyTorch</span><span>Python</span><span>HPC</span><span>Git</span>
-                    </div>
-                </div>
-
-                <div class="project-holo reveal-cyber delay-3">
-                    <div class="holo-header">
-                        <i class="fas fa-satellite-dish holo-icon"></i>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
-                    <h3>Sensor / Test Data Validation Tool</h3>
-                    <p>Processed multimodal sensor/test data, benchmarked outputs across configurations, flagged anomalies and failure modes for safety and quality analysis.</p>
-                    <div class="holo-tags">
-                        <span>Python</span><span>Pandas</span><span>PyTorch</span><span>Data Analysis</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== CONTACT ===== -->
-    <section class="scene content-scene" id="contact">
-        <div class="scene-container">
-            <div class="section-header reveal-cyber">
-                <span class="section-tag">05</span>
-                <h2 class="neon-title">INIT<span class="neon-pink">_</span>CONTACT</h2>
-                <div class="header-line"></div>
-            </div>
-            <div class="contact-hub reveal-cyber">
-                <p class="contact-msg">Looking for Data Scientist and ML Engineer opportunities. My inbox is always open.</p>
-                <div class="contact-grid">
-                    <a href="mailto:shaikwasimakram2000@gmail.com" class="contact-node">
-                        <i class="fas fa-envelope"></i>
-                        <span>shaikwasimakram2000@gmail.com</span>
-                    </a>
-                    <a href="tel:+13463837704" class="contact-node">
-                        <i class="fas fa-phone"></i>
-                        <span>+1 (346) 383-7704</span>
-                    </a>
-                    <a href="https://linkedin.com/in/wasimakramshaik" target="_blank" class="contact-node">
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="https://github.com/wasimakrammind" target="_blank" class="contact-node">
-                        <i class="fab fa-github"></i>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <a href="mailto:shaikwasimakram2000@gmail.com" class="cyber-btn primary lg">
-                    <span>SEND_MESSAGE</span>
-                    <i class="fas fa-paper-plane"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="cyber-footer">
-        <div class="footer-line"></div>
-        <p>Built by Wasim Akram Shaik</p>
-    </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
