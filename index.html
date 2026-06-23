@@ -1,62 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wasim Akram Shaik | Data Scientist & ML Engineer</title>
-    <meta name="description" content="Interactive cyberpunk portfolio — walk around and explore!">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wasim Akram Shaik | Data Scientist & ML Engineer</title>
+<meta name="description" content="Data Scientist & ML Engineer — production analytics, experimentation, deep learning">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game-wrapper">
-        <!-- Loading screen -->
-        <div id="loading-screen">
-            <div class="load-char"></div>
-            <div class="load-bar-wrap">
-                <div class="load-bar" id="loadBar"></div>
-            </div>
-            <div class="load-pct" id="loadPct">0%</div>
-            <p class="load-tip">Initializing cyberpunk city...</p>
-        </div>
 
-        <!-- Game canvas -->
-        <canvas id="gameCanvas"></canvas>
+<!-- Neural Network Canvas Background -->
+<canvas id="neuralBg"></canvas>
 
-        <!-- HUD overlay -->
-        <div id="hud" class="hidden">
-            <div class="hud-name">WASIM<span class="pink">.</span>EXE</div>
-            <div class="hud-hint" id="hudHint"></div>
-            <div class="hud-controls">
-                <span>← → MOVE</span>
-                <span>↑ ENTER BUILDING</span>
-            </div>
-        </div>
+<!-- Floating ML Icons -->
+<div id="floatingIcons" aria-hidden="true"></div>
 
-        <!-- Modal for content -->
-        <div id="modal" class="modal hidden">
-            <div class="modal-inner">
-                <button class="modal-close" id="modalClose">✕</button>
-                <div class="modal-header">
-                    <span class="modal-tag" id="modalTag"></span>
-                    <h2 id="modalTitle"></h2>
-                </div>
-                <div class="modal-body" id="modalBody"></div>
-            </div>
-        </div>
+<!-- Mouse trail particles -->
+<canvas id="particleTrail"></canvas>
 
-        <!-- Intro overlay -->
-        <div id="intro" class="intro">
-            <div class="intro-box">
-                <h1>WASIM AKRAM SHAIK</h1>
-                <p class="intro-sub">[ Data Scientist & ML Engineer ]</p>
-                <p class="intro-desc">Walk around my cyberpunk city to explore my portfolio.<br>Use <strong>← →</strong> arrow keys to move, <strong>↑</strong> or <strong>Enter</strong> near a building to interact.</p>
-                <button id="startBtn" class="cyber-btn">START_EXPLORING</button>
-            </div>
-        </div>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-left">
+    <div class="nav-pulse"></div>
+    <span class="nav-brand">WAS<span class="accent">.</span>AI</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge rv">
+      <span class="badge-dot"></span>
+      <span>SYSTEM ONLINE</span>
     </div>
-    <script src="script.js"></script>
+    <h1 class="hero-name rv">WASIM AKRAM<br>SHAIK</h1>
+    <div class="hero-role rv">
+      <span class="role-bracket">[</span>
+      <span id="roleText" class="role-typing"></span>
+      <span class="role-cursor">_</span>
+      <span class="role-bracket">]</span>
+    </div>
+    <p class="hero-desc rv">Data Scientist with 4+ years building production analytics, telemetry, experimentation, anomaly detection, and ML/data pipelines for engineering and product teams.</p>
+    <div class="hero-stats rv">
+      <div class="stat">
+        <span class="stat-num" data-target="4">0</span><span class="stat-plus">+</span>
+        <span class="stat-label">YRS EXP</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="10">0</span><span class="stat-plus">+</span>
+        <span class="stat-label">PROJECTS</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="20">0</span><span class="stat-plus">+</span>
+        <span class="stat-label">TECH STACK</span>
+      </div>
+    </div>
+    <div class="hero-btns rv">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="#contact" class="btn-ghost">Contact Me</a>
+    </div>
+  </div>
+  <div class="hero-visual rv">
+    <div class="nn-model">
+      <canvas id="heroNN" width="400" height="400"></canvas>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="divider"></div>
+<section id="about">
+  <div class="section-tag rv"><span class="tag-line"></span>01 // ABOUT</div>
+  <div class="about-grid">
+    <div class="about-terminal rv">
+      <div class="term-bar">
+        <span class="term-dot red"></span>
+        <span class="term-dot yellow"></span>
+        <span class="term-dot green"></span>
+        <span class="term-title">wasim@portfolio:~$</span>
+      </div>
+      <div class="term-body">
+        <p><span class="prompt">></span> I work at the intersection of analytics, experimentation, and ML engineering. Over 4+ years, I've built production telemetry pipelines, designed A/B testing infrastructure, developed anomaly detection systems, and trained deep learning models that inform real product decisions.</p>
+        <p><span class="prompt">></span> My toolkit: Python, SQL, PySpark, PyTorch. I've defined metric frameworks and event schemas, built feedback-loop pipelines surfacing usage patterns and regressions, and architected Azure data systems processing millions of records.</p>
+        <p><span class="prompt">></span> Currently pursuing M.S. Data Science at the University of Houston, focusing on statistics, ML, deep learning, and distributed systems.</p>
+      </div>
+    </div>
+    <div class="about-info">
+      <div class="info-card rv">
+        <div class="info-icon">📍</div>
+        <div><strong>LOCATION</strong><span>Houston, TX</span></div>
+      </div>
+      <div class="info-card rv">
+        <div class="info-icon">🎓</div>
+        <div><strong>EDUCATION</strong><span>M.S. Data Science, UH</span></div>
+      </div>
+      <div class="info-card rv">
+        <div class="info-icon">💼</div>
+        <div><strong>CURRENT</strong><span>Data Scientist & ML Research</span></div>
+      </div>
+      <div class="info-card rv">
+        <div class="info-icon">🎯</div>
+        <div><strong>FOCUS</strong><span>Analytics, Experimentation, ML</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div class="divider"></div>
+<section id="skills">
+  <div class="section-tag rv"><span class="tag-line"></span>02 // SKILLS</div>
+  <h2 class="section-title rv">Tech Stack</h2>
+  <div class="skills-orbit rv">
+    <canvas id="skillsOrbit" width="600" height="600"></canvas>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card rv" data-color="#00f0ff">
+      <div class="skill-icon">📊</div>
+      <h3>Statistics / Experimentation</h3>
+      <div class="skill-tags">
+        <span>A/B Testing</span><span>Hypothesis Testing</span><span>Experimental Design</span><span>Anomaly Detection</span><span>Regression</span><span>Metric Design</span><span>Model Evaluation</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:92%"></div></div>
+    </div>
+    <div class="skill-card rv" data-color="#b44dff">
+      <div class="skill-icon">🐍</div>
+      <h3>Languages & Tools</h3>
+      <div class="skill-tags">
+        <span>Python</span><span>Pandas</span><span>NumPy</span><span>scikit-learn</span><span>SQL</span><span>PySpark</span><span>PyTorch</span><span>Bash</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:95%"></div></div>
+    </div>
+    <div class="skill-card rv" data-color="#39ff14">
+      <div class="skill-icon">☁️</div>
+      <h3>Data Systems</h3>
+      <div class="skill-tags">
+        <span>Azure ADLS</span><span>Synapse</span><span>Databricks</span><span>Fabric</span><span>Data Factory</span><span>Kafka</span><span>Docker</span><span>Kubernetes</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:88%"></div></div>
+    </div>
+    <div class="skill-card rv" data-color="#ff2d7b">
+      <div class="skill-icon">🧠</div>
+      <h3>ML / Deep Learning</h3>
+      <div class="skill-tags">
+        <span>PyTorch</span><span>TensorFlow</span><span>Feature Engineering</span><span>Model Training</span><span>Experiment Logging</span><span>GPU Profiling</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div>
+    </div>
+    <div class="skill-card rv" data-color="#ffe600">
+      <div class="skill-icon">🏗️</div>
+      <h3>Domain</h3>
+      <div class="skill-tags">
+        <span>Performance Eval</span><span>Sensor Validation</span><span>Failure-Mode Analysis</span><span>Stakeholder Storytelling</span><span>Mentoring</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<div class="divider"></div>
+<section id="experience">
+  <div class="section-tag rv"><span class="tag-line"></span>03 // EXPERIENCE</div>
+  <h2 class="section-title rv">Experience Log</h2>
+  <div class="timeline">
+    <div class="tl-item rv">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-date">2025 — NOW</div>
+        <h3>Data Scientist Intern / Analytics Engineer</h3>
+        <div class="tl-company">Advanced Energy · Houston, TX</div>
+        <ul>
+          <li>Define telemetry and event-tracking schemas; build Python/SQL data pipelines that clean, validate, and transform SAP enterprise data into analysis-ready datasets.</li>
+          <li>Build feature-engineering and feature-selection workflows using Python, PySpark, and SQL; apply statistical and model-based selection to identify high-signal predictors.</li>
+          <li>Investigate trends, anomalies, and data-quality issues; translate ambiguous business questions into measurable metrics and stakeholder dashboards.</li>
+        </ul>
+        <div class="tl-tags"><span>Python</span><span>PySpark</span><span>SQL</span><span>SAP</span></div>
+      </div>
+    </div>
+    <div class="tl-item rv">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-date">MAR 2025 — NOW</div>
+        <h3>Machine Learning Research Engineer</h3>
+        <div class="tl-company">University of Houston · Houston, TX</div>
+        <ul>
+          <li>Design and train PyTorch deep learning models for large-scale spatial transcriptomics analysis on HPC clusters.</li>
+          <li>Profile model-training bottlenecks with torch.profiler and nvidia-smi; optimize data loading and batch strategies.</li>
+          <li>Convert statistical outputs into interpretable visualizations for biology research stakeholders.</li>
+        </ul>
+        <div class="tl-tags"><span>PyTorch</span><span>HPC</span><span>Deep Learning</span><span>GPU</span></div>
+      </div>
+    </div>
+    <div class="tl-item rv">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-date">JUL 2022 — DEC 2024</div>
+        <h3>Senior Data Engineer / Technical Lead</h3>
+        <div class="tl-company">HCLTech · Chennai, India</div>
+        <ul>
+          <li>Owned product telemetry and instrumentation contracts for a medical application used across 100+ hospitals.</li>
+          <li>Designed A/B testing infrastructure: metric definitions, treatment/control assignment, and statistical significance tooling.</li>
+          <li>Built feedback-loop pipelines surfacing usage patterns, regressions, and anomalies from production telemetry streams.</li>
+          <li>Architected Azure data systems (ADLS, Synapse, Databricks, PySpark) processing millions of records daily.</li>
+        </ul>
+        <div class="tl-tags"><span>Azure</span><span>PySpark</span><span>A/B Testing</span><span>Databricks</span><span>Kafka</span></div>
+      </div>
+    </div>
+    <div class="tl-item rv">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-date">MAY 2021 — SEP 2021</div>
+        <h3>Data Engineering Intern</h3>
+        <div class="tl-company">BitWise Academy · Chennai, India</div>
+        <ul>
+          <li>Built Python ETL pipelines with REST API integrations and SQL validation.</li>
+          <li>Implemented data-quality checks (missingness, range checks, duplicate detection) and documented schemas.</li>
+        </ul>
+        <div class="tl-tags"><span>Python</span><span>ETL</span><span>SQL</span><span>REST APIs</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<div class="divider"></div>
+<section id="projects">
+  <div class="section-tag rv"><span class="tag-line"></span>04 // PROJECTS</div>
+  <h2 class="section-title rv">Project Files</h2>
+  <div class="projects-grid">
+    <div class="proj-card rv">
+      <div class="proj-glow" style="--gc:#00f0ff"></div>
+      <div class="proj-num">01</div>
+      <h3>Performance Metrics & Experimentation Framework</h3>
+      <p>Event-schema contracts, metric definitions, treatment/control datasets, and significance-testing outputs for feature-rollout decisions at scale.</p>
+      <div class="proj-tags"><span>PySpark</span><span>SQL</span><span>Azure Synapse</span><span>ADLS</span></div>
+    </div>
+    <div class="proj-card rv">
+      <div class="proj-glow" style="--gc:#ff2d7b"></div>
+      <div class="proj-num">02</div>
+      <h3>Real-Time Anomaly Detection Feedback Loop</h3>
+      <p>Telemetry aggregation and anomaly checks to detect metric regressions and alert engineering teams in near real-time.</p>
+      <div class="proj-tags"><span>PySpark</span><span>SQL</span><span>Kafka</span><span>Power BI</span></div>
+    </div>
+    <div class="proj-card rv">
+      <div class="proj-glow" style="--gc:#b44dff"></div>
+      <div class="proj-num">03</div>
+      <h3>Deep Learning Evaluation Pipeline</h3>
+      <p>Reproducible large-data ML workflow: ingestion, feature engineering, training, validation, checkpointing, experiment logging.</p>
+      <div class="proj-tags"><span>PyTorch</span><span>Python</span><span>HPC</span><span>Git</span></div>
+    </div>
+    <div class="proj-card rv">
+      <div class="proj-glow" style="--gc:#39ff14"></div>
+      <div class="proj-num">04</div>
+      <h3>Sensor / Test Data Validation Tool</h3>
+      <p>Processed multimodal sensor/test data, benchmarked outputs, flagged anomalies and failure modes for safety analysis.</p>
+      <div class="proj-tags"><span>Python</span><span>Pandas</span><span>PyTorch</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="divider"></div>
+<section id="contact">
+  <div class="section-tag rv"><span class="tag-line"></span>05 // CONTACT</div>
+  <h2 class="section-title rv">Init Contact</h2>
+  <p class="contact-desc rv">Looking for Data Scientist and ML Engineer opportunities. Let's connect.</p>
+  <div class="contact-grid">
+    <a href="mailto:shaikwasimakram2000@gmail.com" class="contact-card rv">
+      <div class="cc-icon">✉️</div>
+      <strong>EMAIL</strong>
+      <span>shaikwasimakram2000@gmail.com</span>
+    </a>
+    <a href="tel:+13463837704" class="contact-card rv">
+      <div class="cc-icon">📱</div>
+      <strong>PHONE</strong>
+      <span>+1 (346) 383-7704</span>
+    </a>
+    <a href="https://linkedin.com/in/wasimakramshaik" target="_blank" class="contact-card rv">
+      <div class="cc-icon">🔗</div>
+      <strong>LINKEDIN</strong>
+      <span>linkedin.com/in/wasimakramshaik</span>
+    </a>
+    <a href="https://github.com/wasimakrammind" target="_blank" class="contact-card rv">
+      <div class="cc-icon">💻</div>
+      <strong>GITHUB</strong>
+      <span>github.com/wasimakrammind</span>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Wasim Akram Shaik. Built with neural networks & coffee.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
