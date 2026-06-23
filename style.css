@@ -147,7 +147,7 @@ section{padding:80px 60px;position:relative;z-index:2}
   border-radius:10px;transition:all .3s;
 }
 .info-card:hover{border-color:rgba(0,240,255,.15);transform:translateX(4px)}
-.info-icon{font-size:28px}
+.info-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:rgba(0,240,255,.06);flex-shrink:0}
 .info-card strong{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;color:#00f0ff;letter-spacing:1.5px;margin-bottom:3px}
 .info-card span{font-size:16px;color:rgba(255,255,255,.55)}
 
@@ -167,7 +167,7 @@ section{padding:80px 60px;position:relative;z-index:2}
 }
 .skill-card:hover{border-color:rgba(0,240,255,.12);transform:translateY(-4px)}
 .skill-card:hover::before{opacity:1}
-.skill-icon{font-size:32px;margin-bottom:12px}
+.skill-icon{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:10px;background:rgba(255,255,255,.04);margin-bottom:14px}
 .skill-card h3{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;margin-bottom:14px;color:#fff}
 .skill-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
 .skill-tags span{
@@ -235,9 +235,9 @@ section{padding:80px 60px;position:relative;z-index:2}
   border-radius:10px;text-decoration:none;color:inherit;transition:all .3s;
 }
 .contact-card:hover{border-color:rgba(0,240,255,.15);transform:translateY(-3px)}
-.cc-icon{font-size:32px}
-.contact-card strong{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:#00f0ff;letter-spacing:1.5px;margin-bottom:4px}
-.contact-card span{font-size:16px;color:rgba(255,255,255,.55)}
+.cc-icon{display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:12px;background:rgba(255,255,255,.04);flex-shrink:0}
+.contact-card strong{display:block;font-family:'JetBrains Mono',monospace;font-size:13px;color:#00f0ff;letter-spacing:1.5px;margin-bottom:5px}
+.contact-card span{font-size:17px;color:rgba(255,255,255,.6)}
 
 /* ===== FOOTER ===== */
 footer{text-align:center;padding:40px;font-size:12px;color:rgba(255,255,255,.2);position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.04)}
