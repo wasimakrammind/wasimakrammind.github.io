@@ -69,20 +69,51 @@ function drawNeural(t) {
   }
 }
 
-/* ============ FLOATING ML ICONS ============ */
-const icons = ["🧠", "📊", "🔬", "⚡", "🎯", "📈", "💡", "🔗", "⚙️", "🧮", "📡", "🔮", "🤖", "🧬", "📐"];
+/* ============ FLOATING SVG ICONS ============ */
+const svgIcons = [
+  // Brain / Neural
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><path d="M12 2a4 4 0 014 4c0 1.95-1.4 3.57-3.25 3.92"/><path d="M8 6a4 4 0 014-4"/><circle cx="12" cy="14" r="4"/><path d="M12 18v4M8 22h8"/><path d="M7 14H3M21 14h-4"/></svg>`,
+  // Bar chart
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>`,
+  // Code
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+  // Database / Server
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
+  // Network nodes
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="5" y2="16"/><line x1="12" y1="8" x2="19" y2="16"/></svg>`,
+  // Gear
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>`,
+  // Trending up
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+  // CPU / Chip
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>`,
+  // Lightning
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  // Layers
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`,
+  // Target
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
+  // Scatter / Grid
+  `<svg viewBox="0 0 24 24" fill="none" stroke="CL" stroke-width="1.5"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>`,
+];
+
+const floatColors = ["#00f0ff", "#b44dff", "#39ff14", "#ff2d7b", "#ffe600", "#ff6b2b"];
 const floatContainer = document.getElementById("floatingIcons");
 
 function spawnIcon() {
   const el = document.createElement("div");
   el.className = "fl-icon";
-  el.textContent = icons[Math.random() * icons.length | 0];
+  const color = floatColors[Math.random() * floatColors.length | 0];
+  const svg = svgIcons[Math.random() * svgIcons.length | 0].replace(/CL/g, color);
+  el.innerHTML = svg;
   el.style.left = Math.random() * 100 + "%";
-  el.style.fontSize = (18 + Math.random() * 20) + "px";
-  el.style.animationDuration = (12 + Math.random() * 18) + "s";
+  const size = 24 + Math.random() * 20;
+  el.style.width = size + "px";
+  el.style.height = size + "px";
+  el.style.animationDuration = (14 + Math.random() * 16) + "s";
   el.style.animationDelay = "0s";
   floatContainer.appendChild(el);
-  setTimeout(() => el.remove(), 30000);
+  setTimeout(() => el.remove(), 32000);
 }
 
 // Initial batch
@@ -244,6 +275,9 @@ const orbitItems = [
   { label: "scikit", dist: 140, speed: -0.008, color: "#b44dff", size: 11 },
   { label: "NumPy", dist: 120, speed: 0.007, color: "#00f0ff", size: 10 },
   { label: "Databricks", dist: 240, speed: -0.003, color: "#ffe600", size: 10 },
+  { label: "AI Agents", dist: 150, speed: 0.006, color: "#ff2d7b", size: 11 },
+  { label: "SAP", dist: 180, speed: -0.005, color: "#00f0ff", size: 11 },
+  { label: "AWS", dist: 210, speed: 0.0045, color: "#ff6b2b", size: 11 },
 ];
 
 function drawSkillsOrbit(t) {
